@@ -53,15 +53,6 @@ public static class AudioManagementPanel
                 CustomBackground.gameObject.SetActive(false);
             }));
 
-            var newButton = Object.Instantiate(mouseMoveToggle, CustomBackground.transform);
-            newButton.transform.localPosition = new(1.3f, -1.88f, -16f);
-            newButton.name = "New Audio";
-            newButton.Text.text = GetString("NewSound");
-            newButton.Background.color = Palette.White;
-            var newPassiveButton = newButton.GetComponent<PassiveButton>();
-            newPassiveButton.OnClick = new();
-            newPassiveButton.OnClick.AddListener(new Action(AudioManagementNewWindow.Open));
-
             var helpText = Object.Instantiate(CustomPopup.InfoTMP.gameObject, CustomBackground.transform);
             helpText.name = "Help Text";
             helpText.transform.localPosition = new(-1.25f, -2.15f, -15f);
