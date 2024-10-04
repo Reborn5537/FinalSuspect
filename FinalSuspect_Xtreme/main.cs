@@ -25,15 +25,11 @@ public class Main : BasePlugin
 {
     // == 程序基本设定 / Program Config ==
     public static readonly string ModName = "Final Suspect_Xtreme";
-    public static readonly string TeamColor = "#cdfffd";
-    public static readonly Color32 TeamColor32 = new(205, 255, 253, 255);
-    public static readonly string ModColor = "#cecdfd";
-    public static readonly Color32 ModColor32 = new(206, 205, 253, 255);
-    public static readonly Color32 OutColor = new(180,179,231, 255);
-    public static readonly Color32 HalfYellow = new(255, 255, 25, 160);
-    public static readonly Color32 HalfModColor32 = new (206, 205, 253, 160);
     public const string ForkId = "FinalSuspect_Xtreme";
+    public const string PluginVersion = "1.0.0";
     public const string PluginGuid = "cn.finalsuspect_xtreme.xtremewave";
+    public const int PluginCreation = 2;
+
     // == 认证设定 / Authentication Config ==
     public static HashAuth DebugKeyAuth { get; private set; }
     public const string DebugKeyHash = "c0fd562955ba56af3ae20d7ec9e64c664f0facecef4b3e366e109306adeae29d";
@@ -41,13 +37,22 @@ public class Main : BasePlugin
     public static ConfigEntry<string> DebugKeyInput { get; private set; }
     // == 版本相关设定 / Version Config ==
     public const string LowestSupportedVersion = "2024.8.13";
-    public const string PluginVersion = "1.0.0";
-    public const string ShowVersion_Head = "1.0_20241001";
-    public const string ShowVersion_TestText = "";
-    public const string ShowVersion = ShowVersion_Head + ShowVersion_TestText;
-    public const int PluginCreation = 1;
+
+    public const string DisplayedVersion_Head = "1.0";
+    public const string DisplayedVersion_Date = "20241004";
+    /// <summary>
+    /// 测试信息；
+    /// 支持的内容：Alpha, Beta, Canary, Dev, Preview
+    /// </summary>
+    public const string DisplayedVersion_TestText = "Dev";
+    public const int DisplayedVersion_TestCreation = 8;
+    public static readonly string DisplayedVersion = 
+        $"{DisplayedVersion_Head}_{DisplayedVersion_Date}" +
+        $"{(DisplayedVersion_TestText != "" ? $"_{DisplayedVersion_TestText}_{DisplayedVersion_TestCreation}" : "")}";
+
+
     // == 链接相关设定 / Link Config ==
-    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://fsusx.top/" : "https://fsusx.top/en/";
+    public static readonly string WebsiteUrl = Translator.IsChineseLanguageUser ? "https://xtreme.net.cn" : "https://xtreme.net.cn/en/";
     public static readonly string QQInviteUrl = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=4ojpzbUU42giZZeQ-DTaal-tC5RIpL46&authKey=49OYQwsCza2x5eHGdXDHXD1M%2FvYvQcEhJBNL5h8Gq7AxOu5eMfTc6g2edtlsMuCm&noverify=0&group_code=733425569";
     public static readonly string DiscordInviteUrl = "https://discord.gg/kz787Zg7h8";
     public static readonly string GithubRepoUrl = "https://github.com/XtremeWave/FinalSuspect_Xtreme";
@@ -107,8 +112,6 @@ public class Main : BasePlugin
 
     public static Main Instance;
 
-    //TONX
-
     public static bool NewLobby = false;
 
     public static List<string> TName_Snacks_CN = 
@@ -130,7 +133,7 @@ public class Main : BasePlugin
 
         //Client Options
         HideName = Config.Bind("Client Options", "Hide Game Code Name", "FSX");
-        HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ModColor}");
+        HideColor = Config.Bind("Client Options", "Hide Game Code Color", $"{ColorHelper.ModColor}");
         DebugKeyInput = Config.Bind("Authentication", "Debug Key", "");
         ShowResults = Config.Bind("Result", "Show Results", true);
         UnlockFPS = Config.Bind("Client Options", "UnlockFPS", false);
@@ -174,13 +177,13 @@ public class Main : BasePlugin
                 {RoleTypes.GuardianAngel, "#8CFFDB"},
                 {RoleTypes.Crewmate, "#8cffff"},
                 {RoleTypes.Scientist, "#F8FF8C"},
-                {RoleTypes.Engineer, "#8C90FF"},
+                {RoleTypes.Engineer, "#A5A8FF"},
                 {RoleTypes.Noisemaker, "#FFC08C"},
                 {RoleTypes.Tracker, "#93FF8C"},
                 {RoleTypes.ImpostorGhost, "#ff1919"},
                 {RoleTypes.Impostor, "#ff1919"},
-                {RoleTypes.Shapeshifter, "#ff1919"},
-                {RoleTypes.Phantom, "#ff1919"},
+                {RoleTypes.Shapeshifter, "#FF819E"},
+                {RoleTypes.Phantom, "#CA8AFF"},
             };
         }
         catch (ArgumentException ex)
